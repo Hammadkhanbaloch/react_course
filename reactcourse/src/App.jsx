@@ -1,22 +1,24 @@
 import { useState } from "react";
 function App() {
- let [task,setTask]=useState([]);
- let [input,setInput]=useState("");
-  const AddTask=(e)=>{
-    e.preventDefault();
-    setTask([...task,input]);
-    setInput("");
+ let [darkmode,setDarkMode]=useState(false);
+
+  const themeChanger=()=>{
+    setDarkMode(!darkmode);
   }
   return (
     <>
-<h1>Welcome To Task Manager </h1>
-<input type ="text" placeholder="Enter the task" value={input} onChange={(e)=>setInput(e.target.value)} />
-  <button onClick={AddTask}> Add Task</button>
-   <h2>Added Tasks:</h2>
-   <ol>
-    {task.map((e,index)=>(
-      <li key={index}>{e}</li>))}
-   </ol>
+    < div style={
+      {backgroundColor: darkmode ? "#333":"#fff",
+        color:darkmode ? "#fff":"#000",
+        height:"100vh",
+        padding:"20px"
+      }
+    }>
+ <h1>Welcome To ThemeColor Switcher </h1>
+<button onClick={themeChanger}>
+  Switch to {darkmode ? 'Light' : 'Dark'} Mode
+</button>
+    </div>
     </>
   )
 }
